@@ -17,7 +17,7 @@ def feats(p):  # p: 128x128x3 float RGB 0-255
     mx=p.max(2);mn=p.min(2);f.append(((mx-mn)/(mx+1e-6)).mean())
     c=g[2:-2,2:-2]
     gx=g[2:-2,3:-1]-g[2:-2,1:-3]; gy=g[3:-1,2:-2]-g[1:-3,2:-2]
-    m=np.sqrt(gx**2+gy**2)
+    m=np.sqrt(gx*2+gy**2)
     mb=np.zeros(m.shape,int)
     for e in EDGES[1:-1]: mb+= (m>=e)
     f+=list(np.bincount(mb.ravel(),minlength=12)/m.size)
